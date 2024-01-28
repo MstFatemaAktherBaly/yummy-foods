@@ -7,7 +7,14 @@ if(!isset($_SESSION['auth'])){
     session_unset();
     header("location: ./login.php");
 }
-
+//profile helpers
+function getProfileImage(){
+    if(isset($_SESSION['auth']['profile_img'])){
+        return "../uploads/".$_SESSION['auth']['profile_img'];
+    }else{
+        return "../uploads/". "https://api.dicebear.com/7.x/initials/svg?seed=". $_SESSION['auth']['profile_img'];
+    }
+}
 
 ?>
 
@@ -224,7 +231,7 @@ if(!isset($_SESSION['auth'])){
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= ucwords($_SESSION['auth']['fname']) ?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="https://api.dicebear.com/7.x/initials/svg?seed=<?= ucwords($_SESSION['auth']['fname']) ?>">
+                                    src="<?= getProfileImage()?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

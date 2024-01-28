@@ -8,7 +8,14 @@ $fname = $_REQUEST['fname'];
 $lname = $_REQUEST['lname'];
 $email = $_REQUEST['email'];
 $profileImage = $_FILES['profileImage'];
-$extension = pathinfo($profileImage['name'])['extension'];
+$extension = null ;
+
+if($profileImage['size'] > 0){
+
+  $extension = pathinfo($profileImage['name'])['extension'];
+
+}
+
 $acceptedTypes = ['jpg','png'];
 $userId = $_SESSION['auth']['id'];
 
@@ -60,6 +67,12 @@ else{
 
 if($profileImage['size'] > 0){
 
+  //check for previous file
+
+  if(file_exists($path . '/' . $_SESSION['auth']['profile_img'])){
+    echo "yes";
+   unlink($path . '/' . $_SESSION['auth']['profile_img']);
+  } 
   $fileName = 'user-'. uniqid() . ".$extension";
   
   $from = $profileImage['tmp_name'];
@@ -84,6 +97,10 @@ if($res){
   $_SESSION['auth']['fname'] = $fname;
   $_SESSION['auth']['lname'] = $lname;
   $_SESSION['auth']['email'] = $email;
+
+  $_SESSION['auth']['profile_img'] = $fileName;
+
+  header("Location: ../Backend/profile.php");
 }
 
 
