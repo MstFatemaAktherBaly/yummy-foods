@@ -85,7 +85,7 @@ unset($_SESSION['errors']);
     function updatePreviewImage(event) {
      let url = URL.createObjectURL(event.target.files[0])
      profileImage.src = url;
-     console.log(url)
+   
  
     }
 

@@ -70,7 +70,7 @@ if($profileImage['size'] > 0){
   //check for previous file
 
   if(file_exists($path . '/' . $_SESSION['auth']['profile_img'])){
-    echo "yes";
+  
    unlink($path . '/' . $_SESSION['auth']['profile_img']);
   } 
   $fileName = 'user-'. uniqid() . ".$extension";

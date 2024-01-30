@@ -16,7 +16,7 @@ include_once "./backendlayouts/header.php";
                                                 <img style="max-width: 100%;" class="profileImage" src="https://www.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg">
                                             </label>
 
-                                                <input name="feautured_img" class="d-none" type="file" id="profileInput">
+                                                <input accept=".jpg, .png, .jpeg" name="feautured_img" class="d-none" type="file" id="profileInput">
                                                 <span class="text-danger">
                                                 <?= $_SESSION['errors']['profileImage'] ?? '' ?>
                                                 </span>
@@ -58,7 +58,7 @@ unset($_SESSION['errors']);
     function updatePreviewImage(event) {
      let url = URL.createObjectURL(event.target.files[0])
      profileImage.src = url;
-     console.log(url)
+     
  
     }
 

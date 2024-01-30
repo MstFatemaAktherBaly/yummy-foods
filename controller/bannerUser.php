@@ -1,13 +1,17 @@
 <?php
 session_start();
 
+include "../database/env.php";
+
 //data collect
 
-$details = $_REQUEST['details'];
-$video_url = $_REQUEST['video_url'];
 $heading = $_REQUEST['heading'];
+$details = $_REQUEST['details'];
 $btn_title = $_REQUEST['btn_title'];
 $btn_link = $_REQUEST['btn_link'];
+$video_url = $_REQUEST['video_url'];
+$featured_img = $_FILES['feautured_img'];
+
 
 //validation
 
@@ -26,6 +30,19 @@ if(empty($btn_link)){
 if(count($errors) > 0){
     $_SESSION['errors'] = $errors;
     header("Location: ../Backend/addBanners.php");
+}else{
+
+   $imagepath = uniqid() . "banner_img" . $featured_img['name'];
+   $tmp_name = $featured_img['tmp_name'];
+   move_uploaded_file($tmp_name, "../banner_image/" . $imagepath);
+
+    $query = "INSERT INTO banners( heading, details, button_tittle, button_url, video_url, feautured_img) VALUES ('$heading', '$details', '$btn_title', '$btn_link', '$video_url', ' $imagepath')";
+
+    $res = mysqli_query($conn , $query);
+
+    $_SESSION['success'] = "Data inserted";
+    header("Location: ../Backend/allBanners.php");
+
 }
 
 
