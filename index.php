@@ -1,5 +1,16 @@
 <?php
 include_once "./frontendlayouts/header.php";
+include "./database/env.php";
+
+$banner = "SELECT * FROM banners WHERE status = 1 ";
+$bannerquery = mysqli_query($conn, $banner);
+$result =  mysqli_fetch_assoc($bannerquery);
+
+echo "<pre>";
+print_r($result);
+echo "</pre>";
+
+
 ?>
 
   <!-- ======= Hero Section ======= -->

@@ -34,7 +34,7 @@ if(count($errors) > 0){
 
    $imagepath = uniqid() . "banner_img" . $featured_img['name'];
    $tmp_name = $featured_img['tmp_name'];
-   move_uploaded_file($tmp_name, "../banner_image/" . $imagepath);
+   move_uploaded_file($tmp_name, "./banner_image" . $imagepath);
 
     $query = "INSERT INTO banners( heading, details, button_tittle, button_url, video_url, feautured_img) VALUES ('$heading', '$details', '$btn_title', '$btn_link', '$video_url', ' $imagepath')";
 
