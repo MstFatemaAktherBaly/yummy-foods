@@ -2,13 +2,13 @@
 include_once "./frontendlayouts/header.php";
 include "./database/env.php";
 
-$banner = "SELECT * FROM banners WHERE status = 1 ";
+$banner = "SELECT * FROM banners WHERE status = 1";
 $bannerquery = mysqli_query($conn, $banner);
 $result =  mysqli_fetch_assoc($bannerquery);
 
-echo "<pre>";
-print_r($result);
-echo "</pre>";
+// echo "<pre>";
+// print_r($result);
+// echo "</pre>";
 
 
 ?>
@@ -18,7 +18,7 @@ echo "</pre>";
     <div class="container">
       <div class="row justify-content-between gy-5">
         <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-          <h2 data-aos="fade-up">Enjoy Your Healthy<br>Delicious Food</h2>
+          <h2 data-aos="fade-up"><?= $result['heading'] ?></h2>
           <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="#book-a-table" class="btn-book-a-table">Book a Table</a>
